@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
+import { useCart } from "../../context/CartContext";
 
-const ProductCard = ({ item, addingToCart }) => {
+const ProductCard = ({ item }) => {
+  const { addToCart } = useCart();
   return (
     <div className="h-96 w-80 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
       <div className="flex items-center justify-center bg-white">
@@ -79,7 +81,7 @@ const ProductCard = ({ item, addingToCart }) => {
         <button
           href="#"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"
-          onClick={() => addingToCart(item.id)}
+          onClick={() => addToCart(item.id)}
         >
           Add to cart
         </button>

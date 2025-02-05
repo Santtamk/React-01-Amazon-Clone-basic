@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { useCart } from "../../context/CartContext";
+
 
 const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
-  const { cartItems, addToCart } = useCart();
+  // const { cartItems, addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,17 +21,17 @@ const Products = () => {
   }, []);
 
   //function for addIngToCart goes as prop to ProductCard and uses useCallBack
-  const addingToCart = (id) => {
-    const findProduct = allProducts.find((item) => item.id === id);
-    if (findProduct) {
-      addToCart(findProduct);
-    }
-  };
+  // const addingToCart = (id) => {
+  //   const findProduct = allProducts.find((item) => item.id === id);
+  //   if (findProduct) {
+  //     addToCart(findProduct);
+  //   }
+  // };
 
   return (
     <div className="flex flex-wrap gap-4 items-center justify-center">
       {allProducts.map((item) => (
-        <ProductCard item={item} key={item.id} addingToCart={addingToCart} />
+        <ProductCard item={item} key={item.id} />
       ))}
     </div>
   );
