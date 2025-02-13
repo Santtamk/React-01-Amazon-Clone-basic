@@ -69,7 +69,7 @@ const ProductCard = ({ item }) => {
         <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
           {item.rating.rate}
         </span>
-        <span className="">of</span>
+        <span className="text-white"> of </span>
         <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
           5.0
         </span>
@@ -81,7 +81,7 @@ const ProductCard = ({ item }) => {
         <button
           href="#"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"
-          onClick={() => addToCart(item.id)}
+          onClick={() => addToCart(item)}
         >
           Add to cart
         </button>

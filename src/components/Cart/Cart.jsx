@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 
 const Cart = () => {
-  // const [count, setCount] = useState({});
+  const [count, setCount] = useState({});
   // const [totalAmount, setTotalAmount] = useState(0);
-  const { cartItems } = useCart();
+  const { cartItems, increment, decrement } = useCart();
   console.log("cartItems from cart:", cartItems);
 
   // useEffect(() => {
@@ -49,17 +49,11 @@ const Cart = () => {
             <p className="">{item.title}</p>
           </div>
           <div className="flex gap-5 items-center">
-            <button
-              className="pointer"
-              // onClick={() => decrement(item.id)}
-            >
+            <button className="pointer" onClick={() => decrement(item)}>
               -
             </button>
-            {/* <div>{count[item.id] || 1}</div> */}
-            <button
-              className="pointer"
-              // onClick={() => increment(item.id)}
-            >
+            <div>{item.quantity}</div>
+            <button className="pointer" onClick={() => increment(item)}>
               +
             </button>
           </div>

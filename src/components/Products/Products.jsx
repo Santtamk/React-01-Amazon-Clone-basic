@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
-
 const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
   // const { cartItems, addToCart } = useCart();
@@ -29,7 +28,7 @@ const Products = () => {
   // };
 
   return (
-    <div className="flex flex-wrap gap-4 items-center justify-center">
+    <div className="flex flex-wrap gap-4 items-center justify-center pt-4">
       {allProducts.map((item) => (
         <ProductCard item={item} key={item.id} />
       ))}

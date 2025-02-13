@@ -7,30 +7,53 @@ export const useCart = () => useContext(CartContext);
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  // const addToCart = useCallback((product) => {
-  //   setCartItems((prevItems) => {
-  //     if (prevItems.some((item) => item.id === product.id)) return prevItems;
-  //     return [...prevItems, product];
-  //   });
-  // }, []);
-
   const addToCart = (item) => {
     setCartItems((prevCart) => {
-      const existingItem = prevCart.find((existingCartItems) => existingCartItems.id === item.id);
+      const existingItem = prevCart.find(
+        (existingCartItems) => existingCartItems.id === item.id
+      );
       if (existingItem) {
         //toast can be added here for'item already exists in cart'
-        console.log(prevCart);
+        console.log("item already exists in cart", prevCart);
         return prevCart;
       } else {
         const updateCart = [...prevCart, { ...item, quantity: 1 }];
         //toast can be added here for'added to cart'
-        console.log(prevCart);
+        console.log(updateCart);
         return updateCart;
       }
     });
   };
 
-  const cart = { cartItems, setCartItems, addToCart };
+  // increase item count in cart count
+  const increment = (item) => {
+    setCartItems((prevCart) => {
+      const existingItem = prevCart.map((existingCartItems) =>
+        existingCartItems.id === item.id
+          ? { ...existingCartItems, quantity: existingCartItems.quantity + 1 }
+          : existingCartItems
+      );
+      return existingItem;
+    });
+  };
+
+  const decrement = (item) => {
+    setCartItems((prevCart) => {
+      const existingItem = prevCart
+        .map((existingCartItems) =>
+          existingCartItems.id === item.id && existingCartItems.quantity > 0
+            ? { ...existingCartItems, quantity: existingCartItems.quantity - 1 }
+            : existingCartItems
+        )
+        .filter(
+          (existingCartItems) => existingCartItems.quantity > 0
+          //can add a toast here for 'removed item'
+        );
+      return existingItem;
+    });
+  };
+
+  const cart = { cartItems, setCartItems, addToCart, increment, decrement };
   return <CartContext.Provider value={cart}>{children}</CartContext.Provider>;
 };
 
